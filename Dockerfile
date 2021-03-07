@@ -6,5 +6,5 @@ RUN apt-get install -y libgl1-mesa-dev
 RUN pip install -r requirements.txt
 RUN pip install Flask
 RUN pip install gunicorn
-RUN chmod +x /usr/app/start.sh
+RUN chmod +x start.sh
 CMD ["./start.sh"]
