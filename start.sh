@@ -1,1 +1,1 @@
-gunicorn -b :5000 --access-logfile - --error-logfile - pixelshop:app
+gunicorn -b 0.0.0.0:8080 gunicorn -w 2  pixelshop:app --timeout 120
