@@ -8,4 +8,4 @@ RUN pip install Flask
 RUN pip install gunicorn
 USER root 
 RUN chmod 755 /usr/app/start.sh
-CMD ["./start.sh"]
+CMD ["sh", "./start.sh"]
