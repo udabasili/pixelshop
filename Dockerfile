@@ -1,7 +1,5 @@
 FROM python:latest
 WORKDIR /usr/app
-RUN useradd myapp
-USER myapp
 COPY . .
 RUN apt-get update
 RUN apt-get install -y libgl1-mesa-dev
