@@ -1,0 +1,115 @@
+#frame.active{
+    display:flex;
+    flex-direction: frame-buttonumn;
+    justify-content: center;
+    align-items: center
+}
+
+#frame .frame-button{
+    box-shadow: 0 1.4rem 4rem rgba(0, 0, 0, .2);
+    margin: .7rem 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+/* .frame-input{
+    display: none;
+} */
+
+.frame-label{
+    font-family: 'Aclonica', sans-serif;
+    font-size: 1.55rem;
+    font-weight: bold;
+    padding: .6rem 1.3rem;
+}
+
+.frame-sample{
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+
+}
+
+.frame-border-1{
+	border: 10px solid rgb(189, 223, 0);
+	background-origin: border-box;
+	box-sizing: border-box;
+    border-top: 10px solid gold;
+	border-radius: 50%;
+    overflow: hidden;
+
+    
+
+}
+
+
+.frame-border-2 {
+    display: inline-block;
+    border: 3px solid #333333;
+    border-radius: 2% 6% 5% 4% / 1% 1% 2% 4%;
+    text-transform: uppercase;
+    position: relative;
+    
+    
+}
+
+.frame-border-2::before {
+    content: '';
+    border: 2px solid #353535;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0) scale(1.015) rotate(0.5deg);
+    border-radius: 1% 1% 2% 4% / 2% 6% 5% 4%;
+}
+
+
+.frame-border-3 {
+    display: inline-block;
+    border: 6px double rgb(255, 174, 0);
+    position: relative;
+
+}
+
+.frame-border-4 {
+    display: inline-block;
+    border: 9px groove rgba(184, 179, 179, 0.76);;
+    position: relative;
+
+}
+
+.frame-border-5 {
+    display: block;
+    position: relative;
+
+}
+
+
+.frame-border-5:before,
+.frame-border-5:after{
+  position: absolute;
+  content: "";
+  transition: all .25s;
+}
+
+.frame-border-5:before{
+  border-bottom: 10px solid yellow;
+  border-left: 10px solid yellow;
+  width: 10%;
+  height: 33%;
+  left: -2px;
+  bottom: -2px;
+}
+
+.frame-border-5:after{
+  border-top: 10px solid yellow;
+  border-right: 10px solid yellow;
+  width: 10%;
+  height: 33%;
+  top: -2px;
+  right: -2px;
+}

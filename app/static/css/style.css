@@ -1,0 +1,148 @@
+.image-upload{
+    display: none;
+}
+.bg-chocolate{
+    background-color: chocolate
+}
+
+
+.side-nav-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+}
+
+.side-nav-item a{
+    all: inherit;
+    color: white;
+    padding: .6rem 0;
+
+}
+
+.side-nav-item a:hover{
+    color: white;
+    outline: none;
+    border: none;
+
+
+}
+
+.side-nav-item.active{
+    background-color: lightgray;
+    border-right: 2px solid black  !important;
+}
+
+.side-nav-item.active a{
+    color: black;
+}
+
+
+.nav-tabs .nav-link{
+    margin-bottom: 0 !important;
+    border: none !important;
+    
+
+}
+
+.navbar-brand{
+    font-family: 'Anton', sans-serif;
+    margin-left: .5rem;
+    word-spacing: .3rem;
+}
+
+.bg-grey{
+    background-color: rgb(241, 240, 240) !important;
+}
+
+.col-image{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-items: center;
+    width: 30rem;
+    height: 30rem;
+}
+
+
+.preview-image{
+    display: none;
+    justify-content: center;
+    align-items: center;
+    width: 30rem;
+    height: 30rem
+}
+
+.preview-image img{
+    width: 100%;
+    height: 100%;
+}
+
+.cropper-container img {
+    width: 80%
+}
+
+.col-button{
+    display: flex;
+    justify-content: center;
+
+}
+
+.img-container{
+    max-width: 100%;
+}
+
+.img-container img {
+    width: 100%
+}
+
+.custom-range-input,
+.custom-range-label{
+    width: 100%
+}
+
+
+.custom-range-label{
+    display: flex;
+    justify-content: space-between;
+}
+
+.loader{
+    border: 5px solid #f3f3f3;
+    animation: spin 1s linear infinite;
+    border-top: 5px solid #555;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: none;
+    position: absolute;
+    z-index: 50;
+    animation: spin 2s linear infinite;
+
+
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
+#col-image{
+    max-height: 90vh;
+    justify-content: center;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    position: relative;
+}
+
+
+button:disabled{
+    cursor: not-allowed
+}
