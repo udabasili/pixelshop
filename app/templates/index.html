@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Aclonica&family=Adamina&family=Akaya+Telivigala&family=Anton&family=Barlow+Condensed:wght@400;500&family=Bebas+Neue&family=Cabin:wght@500&family=Coda+Caption:wght@800&family=Delius+Swash+Caps&family=Krona+One&family=Oi&family=Open+Sans&family=Pathway+Gothic+One&family=Poppins:wght@500&family=Raleway&family=Pacifico&family=Balsamiq+Sans&Bitter&family=Roboto&family=DotGothic16&family=Rubik:wght@500&family=Yusei+Magic&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <link rel="stylesheet" href='{{url_for("static", filename="css/style.css")}}'>
+        <link rel="stylesheet" href='{{url_for("static", filename="css/effect.css")}}'>
+        <link rel="stylesheet" href='{{url_for("static", filename="css/text.css")}}'>
+        <link rel="stylesheet" href='{{url_for("static", filename="css/frame.css")}}'>
+        <script src="{{url_for('static', filename='js/html2canvas.js')}}"></script>
+        <link rel="shortcut icon" href="{{url_for('static', filename='images/favicon.ico')}}" type="image/x-icon">  
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css" integrity="sha512-jO9KUHlvIF4MH/OTiio0aaueQrD38zlvFde9JoEA+AQaCNxIJoX4Kjse3sO2kqly84wc6aCtdm9BIUpYdvFYoA==" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js" integrity="sha512-1bpfZkKJ+WlmJN/I2KLm79dSiuOos0ymwL5IovsUVARyzcaf9rSXsVO2Cdg4qlKNOQXh8fd1d0vKeY9Ru3bQDw==" crossorigin="anonymous"></script>
+        <title>PixelShop</title>
+    </head>
+    <body style='height:100vh' class='d-flex flex-column'>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+           <img src="{{ url_for('static', filename='images/icons/photo.png')}}" 
+            width="30" 
+            height="30" 
+            class="pl-5" alt="app-icon">
+            <a class="navbar-brand" href="#">Pixel Shop</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+                <ul class="navbar-nav ">
+                    <input class='image-upload' type="file" accept="image/*"/>
+                        <button class="btn btn-light m-2  my-sm-0" id='open'>Open</button>
+                        <button class="btn btn-light  m-2 my-sm-0" id='save' disabled='true'>Save</button>
+                </ul>
+                </div>
+            </nav>
+        </nav>
+        <div class="row g-0 h-75 flex-grow-1">
+            <div class="col-1 h-100 bg-chocolate">
+                <ul class ="nav nav-tabs" role="tablist" id='myTab'>
+                    <li class="side-nav-item" role="presentation">
+                        <a class="nav-link active" id="edit-tab" data-bs-toggle="tab" data-bs-target="#edit" type="button" role="tab" aria-controls="edit" aria-selected="true">
+                            <img src="{{ url_for('static', filename='images/icons/edit.png')}}" 
+                                width="30" 
+                                height="30" 
+                                class="pl-5" alt="app-icon">
+                            Edit
+                        </a>
+                        
+                    </li>
+                    <li class ="side-nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab" href="#effect" id="effect-tab" data-bs-toggle="tab" data-bs-target="#effect" type="button" role="tab" aria-controls="effect" aria-selected="false">
+                            <i  
+                                style='color:black; font-size: 2.5rem'
+                                class="fa fa-magic"></i>
+                            Effect
+                        </a>
+                    </li>
+                    <li class ="side-nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab"  href="#text-edit" id="text-tab" data-bs-toggle="tab" data-bs-target="#text-edit" type="button" role="tab" aria-controls="text" aria-selected="false">
+                            <img src="{{ url_for('static', filename='images/icons/font.png')}}" 
+                                width="30" 
+                                height="30" 
+                                class="pl-5" alt="app-icon">
+                            Text
+                        </a>
+                    </li>
+                    <li class ="side-nav-item" role="presentation">
+                        <a class="nav-link" data-toggle="tab"  href="#frame" id="frame-tab" data-bs-toggle="tab" data-bs-target="#frame" type="button" role="tab" aria-controls="frame" aria-selected="false">
+                            <img src="{{ url_for('static', filename='images/icons/frame.png')}}" 
+                                width="30" 
+                                height="30" 
+                                class="pl-5" alt="app-icon">
+                            Frame
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col bg-grey " id='col-image'>
+                <div class="text-character" id="text" role="tabpanel" aria-labelledby="text-tab">
+                    {% include 'text-charact.html' %}
+                </div>
+                <div class="col-image">
+                    <div class="text-box"  >
+                        <div class='resizers'>
+                            <div class="resizer-1 resizer">
+                            </div>
+                            <div class="resizer-2 resizer">
+                            </div>
+                            <div class="resizer-3 resizer">
+                            </div>
+                            <div class="resizer-4 resizer">
+                            </div>      
+                        </div>
+                        <p 
+                            class="text" 
+                            id='text'
+                            ondblclick="this.contentEditable=true;this.className='inEdit text'" 
+                            onblur="this.contentEditable=false;this.className='text'"
+                            draggable="true" contenteditable="false">
+                            Double click here to add text
+                        </p>
+                    </div>
+                    <div class='preview-image'>
+                        <div class="loader">
+
+                        </div>
+                        <img 
+                           alt="Responsive image">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-3 bg-chocolate tab-content h-100" id="myTabContent">
+                <div class="tab-pane fade show active" id="edit" role="tabpanel" aria-labelledby="edit-tab">
+                    {% include 'edit.html' %}
+
+                </div>
+                <div class="tab-pane fade" id="effect" role="tabpanel" aria-labelledby="effect-tab">
+                     {% include 'effect.html' %}
+                </div>
+                <div class="tab-pane fade" id="text-edit" role="tabpanel" aria-labelledby="text-tab">
+                    {% include 'text.html' %}
+                </div>
+                <div class="tab-pane fade" id="frame" role="tabpanel" aria-labelledby="frame-tab">
+                    {% include 'frame.html' %}
+
+                </div>
+            </div>
+            </div>
+        </div>
+        <main>
+
+        </main>
+    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="{{url_for('static', filename='js/script.js')}}"></script>
+    <script src="{{url_for('static', filename='js/edit.js')}}"></script>
+    <script src="{{url_for('static', filename='js/effect.js')}}"></script>
+    <script src="{{url_for('static', filename='js/text.js')}}"></script>
+    <script src="{{url_for('static', filename='js/frame.js')}}"></script>
+
+</html>
