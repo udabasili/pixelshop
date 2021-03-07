@@ -1,1 +1,1 @@
-gunicorn -b 0.0.0.0:8080 gunicorn -w 2  pixelshop:app --timeout 120
+gunicorn -b 0.0.0.0:8080 gunicorn -w 2  --t 120 pixelshop:app 
