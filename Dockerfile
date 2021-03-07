@@ -1,7 +1,7 @@
 FROM python:latest
 WORKDIR /usr/app
-RUN adduser -D myuser
-USER myuser
+RUN useradd myapp
+USER myapp
 COPY . .
 RUN apt-get update
 RUN apt-get install -y libgl1-mesa-dev
