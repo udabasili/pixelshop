@@ -6,5 +6,6 @@ RUN apt-get install -y libgl1-mesa-dev
 RUN pip install -r requirements.txt
 RUN pip install Flask
 RUN pip install gunicorn
-RUN chmod +x start.sh
+USER root 
+RUN chmod 755 ./start-docker.sh
 CMD ["./start.sh"]
