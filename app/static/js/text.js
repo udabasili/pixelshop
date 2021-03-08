@@ -155,7 +155,7 @@ textButtons.forEach((textButton) =>{
         textCharacter.style.display = 'flex'
         textBox.style.display = 'flex'
         const children = textTransform.children
-
+        text.style.fontFamily = e.target.value;
         for (let index = 0; index < children.length; index++) {
             const element = children[index];
             element.addEventListener("click", function(e){
