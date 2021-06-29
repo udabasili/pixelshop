@@ -31,8 +31,6 @@ Front built with Jinja is a web template engine.
 
 
 
-## To Run
 
-Visit  [Link](https://pixelshop-v6jry.ondigitalocean.app/) 
 
 
