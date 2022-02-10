@@ -11,6 +11,8 @@ const buttonGroup = document.querySelector(".btn-group");
 const fontColor = document.querySelector(".font-color");
 const imageContainer = document.querySelector(".col-image");
 const textContainer = document.querySelector("#text-edit");
+//this gives the distance from the viewpoint to the left and top of the container
+
 const topImageContainer = window.pageYOffset - imageContainer.getBoundingClientRect().top;
 const leftImageContainer = window.pageXOffset - imageContainer.getBoundingClientRect().left;
 const textCharactersLabel = buttonGroup.querySelectorAll('label')
@@ -29,6 +31,7 @@ function handleAllResizable(){
     let mouseStartY = 0;
      for (let i = 0; i < resizers.length; i++) {
          const currentResizer = resizers[i];
+         /**Get the starting the top and left of rectangle, the starting width and the starting point of mouse */
          currentResizer.addEventListener('mousedown', function (e) {
             e.preventDefault();
             startWidth = parseFloat(getComputedStyle(textBox).getPropertyValue('width').replace("px",""))
@@ -41,18 +44,39 @@ function handleAllResizable(){
             window.addEventListener('mouseup', stopResize)
 
         })
-
+        /*Handle resizer elements moving from top clockwise */
         function startResize(e){
             if (currentResizer.classList.contains('resizer-1')) {
+                /**
+                 * When the mouse is moved to the left, its x position actually decreased therefor
+                 if we move the mouse to the left, 
+                 its x position always less than element’ s x position and they will produce a negative number
+                 if we take current mouse postion minus start position.Thus,
+                     if we subtract the element’ s 
+                     old width with a negative number, meaning that the element width will increase and
+                 if we drag the resizer to the right, the `mouseX`
+                 will greater than the `elementX`
+                 and
+                 return a positive number
+                 if we subtract `elementX`
+                 from `mouseX`, therefore decline the element width.
+                 */
+                // the sign after the start width/ height indicated direction where right or down movement is increments
+                
                 const width =startWidth - (e.pageX - mouseStartX);
                 const height = startHeight - (e.pageY - mouseStartY)
                 if (width > min) {
                     textBox.style.width = width + 'px'
+                    //add the previous left point to the current mouse point 
+                    //subtract old mouse point, the leftimage since the conrdinate is relative to the image container not view point
+
                     textBox.style.left = startHorizontal + (
                         e.pageX - 
                         mouseStartX - 
-                        (textBox.offsetWidth / 2) -
-                        leftImageContainer) + 'px'
+                        //we are subtracting the center of the textbox due to the drag function below in the grad listener
+                        (textBox.offsetWidth / 2) - 
+                        leftImageContainer) + 'px' //since we are sizing relative the image container instead of window
+                        //we have to componstate for the distance between the 
                 }
                 if (height > min) {
                     textBox.style.height = height + 'px';
