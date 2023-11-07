@@ -30,8 +30,4 @@ Front built with Jinja is a web template engine.
 - Gunicorn
 
 
-## To Run
-
-Visit  [Link](https://pixelshop-app.herokuapp.com/) 
-
 
